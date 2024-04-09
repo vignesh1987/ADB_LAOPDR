@@ -102,45 +102,9 @@ CapitalCostStorage:
     type: param
     dtype: float
     default: 0
-#Conversionld:
-#   indices: [TIMESLICE,DAYTYPE]
-#   type: param
-#   dtype: float
-#   default: 0
-#Conversionlh:
-#   indices: [TIMESLICE,DAILYTIMEBRACKET]
-#   type: param
-#   dtype: float
-#   default: 0
-#Conversionls:
-#   indices: [TIMESLICE,SEASON]
-#    type: param
-#    dtype: float
-#    default: 0
-#DAILYTIMEBRACKET:
-#    dtype: int
-#    type: set
-#DaysInDayType:
-#   indices: [SEASON,DAYTYPE,YEAR]
-#   type: param
-#   dtype: float
-#   default: 7
-#DaySplit:
-#   indices: [DAILYTIMEBRACKET,YEAR]
-#   type: param
-#   dtype: float
-#   default: 0
-#DAYTYPE:
-#   dtype: int
-#   type: set
 UDC:
     dtype: str
     type: set   
-#DepreciationMethod:
-#   indices: [REGION]
-#   type: param
-#   dtype: float
-#   default: 1
 DiscountRate:
     indices: [REGION]
     type: param
@@ -169,9 +133,6 @@ FixedCost:
     type: param
     dtype: float
     default: 0
-#FUEL:
-#   dtype: str
-#   type: set
 COMMODITY:
     dtype: str
     type: set
@@ -251,9 +212,6 @@ RETagTechnology:
     type: param
     dtype: float
     default: 0
-#SEASON:
-#   dtype: int
-#   type: set
 SpecifiedAnnualDemand:
     indices: [REGION,COMMODITY,YEAR]
     type: param
