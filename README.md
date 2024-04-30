@@ -1,7 +1,7 @@
 # ADB_LAOPDR
 ADB-climate calculator project_Lao
 
-## Work Flow
+## Work Flow for a normal OSeMOSYS run
 1. The data file from OSeMOSYS GUI or ESPEX (the data file creator for the carbon calculator) should be first pre processed using the <preprocess_data.py> file. Use the following code
 
     `python preprocess_data.py datafile.txt datafile_p.txt osemosys.txt osemosys_p.txt`
@@ -41,3 +41,5 @@ ADB-climate calculator project_Lao
     CPLEX code 
      ---
     `otoole -vvv results cplex csv res_cplex.sol results_cplex datafile datafile.txt laotra_config.yaml`
+## Work Flow for ADB model runs
+1. 
