@@ -36,9 +36,9 @@ def optimize_single_file(file_path):
     if not os.path.exists(results_folder):
         os.makedirs(results_folder)
     # For the results, please only use the original data file and not the preprocessed data file.
-    subprocess.run(["otoole", "results", "cplex", "csv", f"res_{data_p_name}.sol", results_folder, "datafile", data_file, "laoADB_config.yaml"])
+    subprocess.run(["otoole", "results", "cplex", "csv", f"res_{data_p_name}.sol", results_folder, "datafile", data_file, "laoADB_config.yml"])
     # Use the follwoing command if the verbose results are needed.
-    #subprocess.run(["otoole", "-vvv", "results", "cplex", "csv", f"res_{data_p_name}.sol", results_folder, "datafile", data_file, "laoADB_config.yaml"])
+    #subprocess.run(["otoole", "-vvv", "results", "cplex", "csv", f"res_{data_p_name}.sol", results_folder, "datafile", data_file, "laoADB_config.yml"])
     
     # Delete the *.SOL file
     try:

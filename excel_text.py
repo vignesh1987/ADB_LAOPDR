@@ -6,10 +6,10 @@ import otoole
 from pathlib import Path
 
 # specify the directories you want to use
-# Specify the directory contianignt he excel files from ESPEX
-input_directory = 'C:\git\ADB_LAOPDR\excel_files'
-# Specify the name fo the folder where Otoole will create the data files
-output_directory = 'C:\git\ADB_LAOPDR\datafolder'
+# Specify the directory containing the excel files from ESPEX
+input_directory = 'D:\git\ADB_LAOPDR\excel_files'
+# Specify the name of the folder where Otoole will create the data files
+output_directory = 'D:\git\ADB_LAOPDR\datafolder'
 
 # loop over the files in the directory
 # Loop over the files and run the Otoole convert command
