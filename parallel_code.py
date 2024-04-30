@@ -4,7 +4,7 @@ import os
 import otoole
 from pathlib import Path
 import multiprocessing
-# Make sure the folder from which you are running this code should contain 'osemosys_4.9.txt' and "preprocess_data.py" and the "datafolder that contains the 1000+ data files
+# Make sure the folder from which you are running this code should contain 'osemosys_4.9.txt' and "preprocess_data.py" and the "datafolder" that contains the 1000+ data files
 def optimize_single_file(file_path):
     model_file = 'osemosys_4.9.txt'
     data_file = file_path
@@ -30,7 +30,7 @@ def optimize_single_file(file_path):
         print(f"LP file for {data_name} does not exist.")
 
     # Creating a results folder
-    results_folder = "cc_res/results_" + data_name
+    results_folder = "cc_res/" + data_name
 
     # Check if the folder already exists
     if not os.path.exists(results_folder):
