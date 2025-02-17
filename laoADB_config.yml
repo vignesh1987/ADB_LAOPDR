@@ -102,6 +102,31 @@ CapitalCostStorage:
     type: param
     dtype: float
     default: 0
+ResidualStorageCapacity:
+    indices: [REGION,STORAGE,YEAR]
+    type: param
+    dtype: float
+    default: 0
+MinStorageCharge:
+    indices: [REGION,STORAGE,YEAR]
+    type: param
+    dtype: float
+    default: 0
+TechnologyToStorage:
+    indices: [REGION, TECHNOLOGY, STORAGE, MODE_OF_OPERATION]
+    type: param
+    dtype: int
+    default: 0
+StorageLevelStart:
+    indices: [REGION, STORAGE]
+    type: param
+    dtype: float
+    default: 1
+TechnologyFromStorage:
+    indices: [REGION, TECHNOLOGY, STORAGE, MODE_OF_OPERATION]
+    type: param
+    dtype: int
+    default: 0
 UDC:
     dtype: str
     type: set   
@@ -110,6 +135,16 @@ DiscountRate:
     type: param
     dtype: float
     default: 0.05
+PvAnnuity:
+    indices: [REGION, TECHNOLOGY]
+    type: param
+    dtype: float
+    default: 0
+CapitalRecoveryFactor:
+    indices: [REGION, TECHNOLOGY]
+    type: param
+    dtype: float
+    default: 0
 DiscountRateIdv:
     indices: [REGION,TECHNOLOGY]
     type: param
@@ -141,6 +176,9 @@ InputActivityRatio:
     type: param
     dtype: float
     default: 0
+SEASON:
+    dtype: int
+    type: set
 MODE_OF_OPERATION:
     dtype: int
     type: set
@@ -224,6 +262,18 @@ SpecifiedDemandProfile:
     default: 0
 STORAGE:
     dtype: str
+    type: set
+DAYTYPE:
+    dtype: int
+    type: set
+DAILYTIMEBRACKET:
+    dtype: int
+    type: set
+STORAGEINTRADAY:
+    dtype: int
+    type: set
+STORAGEINTRAYEAR:
+    dtype: int
     type: set
 TECHNOLOGY:
     dtype: str
@@ -315,6 +365,11 @@ AnnualTechnologyEmission:
     type: result
     dtype: float
     default: 0
+AnnualizedInvestmentCost:
+    indices: [REGION, TECHNOLOGY, YEAR]
+    type: result
+    dtype: float
+    default: 0
 AnnualTechnologyEmissionByMode:
     indices: [REGION, TECHNOLOGY, EMISSION, MODE_OF_OPERATION, YEAR]
     type: result
@@ -342,6 +397,12 @@ DiscountedSalvageValue:
     default: 0
 DiscountedTechnologyEmissionsPenalty:
     short_name: DiscountedTechEmissionsPenalty
+    indices: [REGION, TECHNOLOGY, YEAR]
+    type: result
+    dtype: float
+    default: 0
+TechnologyEmissionsPenalty:
+    short_name: TechEmissionsPenalty
     indices: [REGION, TECHNOLOGY, YEAR]
     type: result
     dtype: float
@@ -444,3 +505,28 @@ UseByTechnologyAnnual:
     type: result
     dtype: float
     default: 0
+Conversionls:
+    indices: [TIMESLICE, SEASON]
+    type: param
+    dtype: int
+    default: 1
+Conversionld:
+    indices: [TIMESLICE, DAYTYPE]
+    type: param
+    dtype: int
+    default: 1
+Conversionlh:
+    indices: [TIMESLICE, DAILYTIMEBRACKET]
+    type: param
+    dtype: int
+    default: 1
+DaysInDayType:
+    indices: [SEASON, DAYTYPE, YEAR]
+    type: param
+    dtype: int
+    default: 1
+DaySplit:
+    indices: [DAILYTIMEBRACKET, YEAR]
+    type: param
+    dtype: int
+    default: 1
