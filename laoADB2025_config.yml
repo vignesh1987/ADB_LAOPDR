@@ -43,6 +43,11 @@ InputToTotalCapacityRatio:
     type: param
     dtype: float
     default: 0
+InputToTotalCapacity: 
+    indices: [REGION,TECHNOLOGY,COMMODITY,YEAR]
+    type: result
+    dtype: float
+    default: 0
 TechnologyActivityByModeLowerLimit:
     short_name: TechActivityByModeLowerLimit
     indices: [REGION,TECHNOLOGY,MODE_OF_OPERATION,YEAR]
