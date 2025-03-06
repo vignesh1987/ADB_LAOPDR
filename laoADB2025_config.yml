@@ -13,6 +13,11 @@ InputToNewCapacityRatio:
     type: param
     dtype: float
     default: 0
+InputToNewCapacity:
+    indices: [REGION,TECHNOLOGY,COMMODITY,YEAR]
+    type: result
+    dtype: float
+    default: 0
 UDCMultiplierTotalCapacity:
     indices: [REGION,TECHNOLOGY,UDC,YEAR]
     type: param
