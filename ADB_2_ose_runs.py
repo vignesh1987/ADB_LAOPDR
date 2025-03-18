@@ -10,8 +10,8 @@ import shutil
 # Add these new configurations
 MODEL_FILE = 'model.v.5.0.txt'  # Replace with the actual path to your model file
 CONFIG_FILE = 'laoADB2025_config.yml'  # Make sure this matches your config file name
-OUTPUT_DATA_DIR = 'C:\\git\\ADB_LAOPDR\\datafolder' #the folder where the original data files are stored
-OUTPUT_PREP_DIR = 'C:\\git\\ADB_LAOPDR\\data_Prep'  # Directory for _p.txt files
+OUTPUT_DATA_DIR = 'C:/git/ADB_LAOPDR/datafolder' #the folder where the original data files are stored
+OUTPUT_PREP_DIR = 'C:/git/ADB_LAOPDR/data_prep'  # Directory for _p.txt files
 
 def process_prep_file(prep_file):
     """
@@ -22,11 +22,11 @@ def process_prep_file(prep_file):
         data_name = base_name.replace('_p', '')  # Remove '_p' to get original data name
         
         # Run the OSeMOSYS routine
-        subprocess.run(["glpsol", "-m", MODEL_FILE, "-d", prep_file, "--wlp", f"{base_name}.lp", "--check"], check=True)
+        subprocess.run(["glpsol", "-m", MODEL_FILE, "-d", prep_file, "--wlp", f"{base_name}.lp", "--check"],shell=True, check=True)
         logging.info(f"Successfully created LP file for {prep_file}")
         
         # Run CPLEX to optimize the LP file
-        subprocess.run(["cplex", "-c", "read", f"{base_name}.lp", "optimize", "write", f"res_{base_name}.sol"], check=True)
+        subprocess.run(["cplex", "-c", "read", f"{base_name}.lp", "optimize", "write", f"res_{base_name}.sol"],shell=True, check=True)
         logging.info(f"Successfully optimized and created solution file for {base_name}")
         
         # Delete the *.LP file
@@ -44,7 +44,7 @@ def process_prep_file(prep_file):
         original_data_file = os.path.join(OUTPUT_DATA_DIR, f"{data_name}.txt")
 
         # Run otoole to process results
-        subprocess.run(["otoole", "results", "cplex", "csv", f"res_{base_name}.sol", results_folder, "datafile", original_data_file, CONFIG_FILE], check=True)
+        subprocess.run(["otoole", "results", "cplex", "csv", f"res_{base_name}.sol", results_folder, "datafile", original_data_file, CONFIG_FILE],shell=True, check=True)
         # Use the following command if verbose results are needed.
         # subprocess.run(["otoole","-vvv", "results", "cplex", "csv", f"res_{base_name}.sol", results_folder, "datafile", original_data_file, CONFIG_FILE], check=True)
         logging.info(f"Results processed for {data_name}")
@@ -61,20 +61,22 @@ def process_prep_file(prep_file):
     except Exception as e:
         logging.error(f"An unexpected error occurred with {prep_file}: {e}")
 
-# ... (keep your existing helper functions)
+
 
 # Main script section
 if __name__ == "__main__":
     # ... (keep your existing directory validation and insert text reading)
 
-    # 3. Get the list of prep files
+    #  Get the list of prep files
     prep_files = glob.glob(os.path.join(OUTPUT_PREP_DIR, '*_p.txt'))
     if not prep_files:
         logging.warning(f"No _p.txt files found in the prep directory: {OUTPUT_PREP_DIR}")
         exit(0)
 
-    # 4. Process prep files in parallel
-    max_workers = os.cpu_count() or 4
+    #  Process prep files in parallel
+    max_workers = 6
+    # This number needs to be changed based on the number of OSeMOSYS runs a user wants to launch in parallel
+    # max_workers = os.cpu_count() or 4
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = [executor.submit(process_prep_file, prep_file) for prep_file in prep_files]
 
