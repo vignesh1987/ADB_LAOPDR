@@ -8,11 +8,11 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # --- Configuration ---
-INPUT_EXCEL_DIR = 'C:\\git\\ADB_LAOPDR\\excel_files'
-OUTPUT_DATA_DIR = 'C:\\git\\ADB_LAOPDR\\datafolder'
-OUTPUT_PREP_DIR = 'C:\\git\\ADB_LAOPDR\\data_Prep'  # Directory for _p.txt files
-INSERT_FILENAME = 'insert.txt'  # extra data to convert it into a preprocessed data file
-CONFIG_FILE = 'laoADB2025_config.yml'
+INPUT_EXCEL_DIR = "C:\\git\\ADB_LAOPDR\\excel_files"
+OUTPUT_DATA_DIR = "C:\\git\\ADB_LAOPDR\\datafolder"
+OUTPUT_PREP_DIR = "C:\\git\\ADB_LAOPDR\\data_prep"  # Directory for _p.txt files
+INSERT_FILENAME = "insert.txt"  # extra data to convert it into a preprocessed data file
+CONFIG_FILE = "laoADB2025_config.yml"
 
 # --- Helper Functions ---
 
@@ -21,7 +21,7 @@ def run_subprocess(filename, output_directory):
     try:
         base_name = os.path.splitext(os.path.basename(filename))[0]
         output_filename = os.path.join(output_directory, base_name + '.txt')
-        subprocess.run(["otoole", "convert", "excel", "datafile", filename, output_filename, CONFIG_FILE], check=True, capture_output=True, text=True)  # Capture output for logging
+        subprocess.run(["otoole", "convert", "excel", "datafile", filename, output_filename, CONFIG_FILE],shell=True, check=True, capture_output=True, text=True)  # Capture output for logging
         logging.info(f"Successfully converted {filename} to {output_filename}")
         return output_filename  # Return the filename for the next step
     except subprocess.CalledProcessError as e:
